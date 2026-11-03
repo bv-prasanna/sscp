@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 850 760" role="img" aria-labelledby="t d">
+<title id="t">Precision semiconductor leadframe</title><desc id="d">Technical artwork of a copper leadframe strip with several high-density semiconductor bonding patterns and a black microchip.</desc>
+<defs>
+  <linearGradient id="metal" x1="0" x2="1" y1="0" y2=".8"><stop stop-color="#ffe6b8"/><stop offset=".2" stop-color="#bc7044"/><stop offset=".5" stop-color="#efb37a"/><stop offset=".76" stop-color="#8e4d32"/><stop offset="1" stop-color="#f6c896"/></linearGradient>
+  <linearGradient id="chip" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#3b4b5c"/><stop offset=".5" stop-color="#162331"/><stop offset="1" stop-color="#050a10"/></linearGradient>
+  <radialGradient id="halo"><stop stop-color="#ce865d" stop-opacity=".26"/><stop offset=".7" stop-color="#bb7f6a" stop-opacity=".06"/><stop offset="1" stop-color="#bb7f6a" stop-opacity="0"/></radialGradient>
+  <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="17"/></filter>
+  <filter id="glow"><feGaussianBlur stdDeviation="5" result="s"/><feMerge><feMergeNode in="s"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  <pattern id="pins" width="17" height="17" patternUnits="userSpaceOnUse"><rect x="6" y="4" width="5" height="9" rx="2" fill="#ffd4a6" opacity=".9"/></pattern>
+  <pattern id="mesh" width="39" height="39" patternUnits="userSpaceOnUse"><path d="M39 0H0V39" fill="none" stroke="#8ca7ad" stroke-opacity=".12" stroke-width="1"/></pattern>
+</defs>
+<circle cx="447" cy="367" r="359" fill="url(#halo)"/>
+<rect width="850" height="760" fill="url(#mesh)" opacity=".45"/>
+<g opacity=".6" fill="none" stroke="#53889d" stroke-width="1"><circle cx="450" cy="390" r="290" stroke-dasharray="3 13"/><circle cx="450" cy="390" r="214" opacity=".5"/><path d="M58 572H180l39-39M620 134h106l43-43M82 226h84m505 365h100"/></g>
+<g transform="translate(102 111) rotate(-15 320 260) skewX(-8)">
+  <rect x="70" y="70" width="580" height="445" rx="14" fill="#000" opacity=".55" filter="url(#shadow)" transform="translate(0 22)"/>
+  <rect x="69" y="64" width="580" height="445" rx="10" fill="none" stroke="#f2bc8b" stroke-width="17"/>
+  <rect x="84" y="79" width="550" height="415" fill="#071b28" stroke="#895036" stroke-width="3"/>
+  <rect x="69" y="64" width="580" height="445" rx="10" fill="none" stroke="url(#metal)" stroke-width="15"/>
+  <path d="M86 65h543M86 507h543" stroke="#ffe1ae" stroke-width="2" opacity=".7"/>
+  <g fill="#102031" stroke="#d18e5f" stroke-width="2">
+    <circle cx="94" cy="73" r="4"/><circle cx="134" cy="73" r="4"/><circle cx="174" cy="73" r="4"/><circle cx="214" cy="73" r="4"/><circle cx="254" cy="73" r="4"/><circle cx="294" cy="73" r="4"/><circle cx="334" cy="73" r="4"/><circle cx="374" cy="73" r="4"/><circle cx="414" cy="73" r="4"/><circle cx="454" cy="73" r="4"/><circle cx="494" cy="73" r="4"/><circle cx="534" cy="73" r="4"/><circle cx="574" cy="73" r="4"/><circle cx="614" cy="73" r="4"/>
+    <circle cx="94" cy="500" r="4"/><circle cx="134" cy="500" r="4"/><circle cx="174" cy="500" r="4"/><circle cx="214" cy="500" r="4"/><circle cx="254" cy="500" r="4"/><circle cx="294" cy="500" r="4"/><circle cx="334" cy="500" r="4"/><circle cx="374" cy="500" r="4"/><circle cx="414" cy="500" r="4"/><circle cx="454" cy="500" r="4"/><circle cx="494" cy="500" r="4"/><circle cx="534" cy="500" r="4"/><circle cx="574" cy="500" r="4"/><circle cx="614" cy="500" r="4"/>
+  </g>
+  <g stroke="url(#metal)" stroke-width="7" fill="none" stroke-linecap="square">
+    <path d="M84 190h117v-44h90M84 247h115v-41h92M84 313h115v43h92M84 376h117v44h90"/>
+    <path d="M634 190H517v-44h-90M634 247H519v-41h-92M634 313H519v43h-92M634 376H517v44h-90"/>
+    <path d="M233 79v80h63M300 79v80M368 79v80M435 79v80h-62M233 494v-80h63M300 494v-80M368 494v-80M435 494v-80h-62"/>
+  </g>
+  <g fill="none" stroke="#e7a46e" stroke-width="2.7" opacity=".96">
+    <path d="M102 108h516M102 465h516M102 128h516M102 446h516"/>
+    <path d="M212 170l53 60M232 163l52 50M252 161l48 35M278 157l38 37M505 170l-53 60M483 163l-52 50M462 161l-48 35M437 157l-38 37"/>
+    <path d="M212 404l53-60M232 411l52-50M252 413l48-35M278 417l38-37M505 404l-53-60M483 411l-52-50M462 413l-48-35M437 417l-38-37"/>
+  </g>
+  <rect x="274" y="204" width="171" height="164" rx="4" fill="url(#chip)" stroke="#f0ba88" stroke-width="5"/>
+  <rect x="290" y="220" width="139" height="132" fill="none" stroke="#687a83" stroke-opacity=".6" stroke-width="1.7"/>
+  <g stroke="#ffe0b6" stroke-width="3.5" opacity=".98"><path d="M290 209v-18m14 18v-18m14 18v-18m14 18v-18m14 18v-18m14 18v-18m14 18v-18m14 18v-18m14 18v-18m14 18v-18"/><path d="M290 370v17m14-17v17m14-17v17m14-17v17m14-17v17m14-17v17m14-17v17m14-17v17m14-17v17m14-17v17"/><path d="M273 228h-17m17 15h-17m17 15h-17m17 15h-17m17 15h-17m17 15h-17m17 15h-17m17 15h-17m17 15h-17m209-120h18m-18 15h18m-18 15h18m-18 15h18m-18 15h18m-18 15h18m-18 15h18m-18 15h18m-18 15h18"/></g>
+  <g font-family="Arial,sans-serif" text-anchor="middle"><text x="359" y="277" fill="#d1e1e9" font-size="12" letter-spacing="5">SSCP</text><path d="M338 301h44m-22-22v44" stroke="#d4a078" stroke-opacity=".7" stroke-width="1.5"/><text x="359" y="336" fill="#8c9cac" font-size="8" letter-spacing="1.6">PRECISION</text></g>
+  <path d="M81 80H636" stroke="#ffdbac" stroke-width="2" opacity=".6"/>
+</g>
+<g opacity=".7"><path d="M95 599h94m-94 0v-36M701 201h55m-55 0v-36" stroke="#d79a68" stroke-width="2"/><circle cx="95" cy="599" r="4" fill="#ecc292"/><circle cx="701" cy="201" r="4" fill="#ecc292"/></g>
+</svg>

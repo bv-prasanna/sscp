@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://sscircuitproducts.com/sitemap.xml
