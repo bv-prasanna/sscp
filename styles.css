@@ -357,3 +357,13 @@ body{background:var(--cream)}
 .floating-top{background:#ff7d1c;color:#071d3d}
 @media(max-width:900px){.brand-mark{width:52px!important;height:52px!important}.hero-brand-seal{top:4%;right:-6%}}
 @media(max-width:640px){.brand-mark{width:43px!important;height:43px!important}.brand-primary{font-size:18px}.brand-secondary{font-size:9px}.hero-brand-seal{top:2%;right:3%;padding:5px 9px 5px 5px;transform:none}.hero-brand-seal img{width:38px;height:38px}.hero-brand-seal b{font-size:14px}.hero-brand-seal small{font-size:8px}.file-upload-field{padding:13px}.floating-action{border-radius:13px}}
+
+/* Enquiry readiness: show a useful alternative instead of an inactive form. */
+#enquiry { scroll-margin-top: 100px; }
+.contact-form-wrap form[hidden], .form-unavailable[hidden] { display: none !important; }
+.form-unavailable { border: 1px solid #bed3ec; border-left: 4px solid #ff8424; border-radius: 12px; background: #f4f9ff; padding: 25px; color: #193957; margin: 20px 0; }
+.form-unavailable h4 { margin: 0 0 10px; font-size: 21px; letter-spacing: -.02em; color: #082d60; }
+.form-unavailable p { margin: 0 0 19px; color: #486783; font-size: 14px; line-height: 1.7; }
+.form-unavailable-actions { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.form-unavailable-actions .btn { font-size: 13px; min-height: 46px; }
+@media (max-width: 640px) { .form-unavailable {padding: 19px;} .form-unavailable-actions { flex-direction:column; align-items:stretch; } .form-unavailable-actions .btn {width:100%;} }

@@ -81,3 +81,14 @@ Copy its site key and secret key into the four values above. **Save and redeploy
 - [Cloudflare Pages `_worker.js` Advanced Mode](https://developers.cloudflare.com/pages/functions/advanced-mode/)
 - [Cloudflare Turnstile server-side validation](https://developers.cloudflare.com/turnstile/get-started/server-side-validation/)
 - [Cloudflare Workers + Resend](https://developers.cloudflare.com/workers/tutorials/send-emails-with-resend/)
+
+## Git-connected Cloudflare Pages (sscp-web-git)
+
+- Production branch: `main`; framework: **None**; build command `exit 0`; output directory `/`.
+- Git push automatically triggers a Pages deployment when the Cloudflare GitHub integration is connected.
+- **The site is not ready to accept contact-form enquiries until all four Production environment variables above are set.** Uploading or merging code does not activate Resend automatically.
+- Visit `https://sscircuitproducts.com/api/enquiry/config`. When setup is complete, it should return `configured: true` and a Turnstile `siteKey`; it never reveals secrets.
+- If the endpoint returns `configured: false`, the contact page intentionally hides the inactive form and shows direct email/WhatsApp alternatives. Configure the four Production variables and redeploy.
+- If the endpoint returns a page instead of JSON, verify that `_worker.js` is included in the deployed build output and check Cloudflare Pages Functions/Workers logs.
+- The `RESEND_FROM` sending address must belong to the subdomain verified with Resend, while the `to` address remains `sales@sscircuitproducts.com` hosted by Zoho.
+- Verify actual mail arrival in Zoho before considering the enquiry form operational.

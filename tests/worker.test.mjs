@@ -44,3 +44,21 @@ try {
  result=await call('/api/enquiry','POST',valid);check(result.status===502,'email provider rejection surfaces failure');
 }finally{globalThis.fetch=savedFetch;}
 console.log(`PASS ${count} assertions: configuration, assets, secure origin, consent, validation, PDF attachments, Turnstile, email provider`);
+
+// Deployment preflight guards: email config is not publicly ready without all secrets.
+for (const key of ['RESEND_API_KEY', 'RESEND_FROM', 'TURNSTILE_SITE_KEY', 'TURNSTILE_SECRET_KEY']) {
+  const config = await call('/api/enquiry/config', 'GET', null, {}, {...env, [key]: ''});
+  const body = await config.json();
+  assert.equal(body.configured, false, `missing ${key} disables form`);
+  assert.equal(body.siteKey, null, `missing ${key} does not leak site key`);
+  const submit = await call('/api/enquiry', 'POST', valid, {}, {...env, [key]: ''});
+  assert.equal(submit.status, 503, `missing ${key} blocks automatic sending`);
+}
+const fs = await import('node:fs');
+const formHtml = fs.readFileSync(path.resolve(import.meta.dirname, '../contact.html'), 'utf8');
+const js = fs.readFileSync(path.resolve(import.meta.dirname, '../script.js'), 'utf8');
+assert.match(formHtml, /id="form-unavailable"/);
+assert.match(formHtml, /href="mailto:sales@sscircuitproducts.com/);
+assert.match(js, /form.hidden = true/);
+assert.match(js, /config.configured !== true/);
+console.log('PASS 12 additional readiness and fallback assertions');

@@ -43,6 +43,7 @@
   const status = document.getElementById('form-status');
   const submit = document.getElementById('send-enquiry');
   const note = document.getElementById('form-config-note');
+  const unavailable = document.getElementById('form-unavailable');
   const interest = document.getElementById('enq-interest');
   const fileInput = document.getElementById('enq-drawing');
   const drawingHelp = document.getElementById('drawing-help');
@@ -61,40 +62,58 @@
     submit.setAttribute('aria-busy', String(value));
   };
 
+  // Never show a dead submission form when the backend isn't fully configured.
+  // The fallback offers immediate contact without exposing secrets or faking a send.
+  const showUnavailable = (message) => {
+    enabled = false;
+    setDisabled(true);
+    form.hidden = true;
+    if (unavailable) {
+      unavailable.hidden = false;
+      const detail = unavailable.querySelector('p');
+      if (detail) detail.textContent = message;
+    }
+    note.textContent = '';
+  };
+
   async function initEnquiry() {
+    let response;
     try {
-      const response = await fetch('/api/enquiry/config', { cache: 'no-store' });
-      if (!response.ok) throw new Error('Service not ready');
+      response = await fetch('/api/enquiry/config', { cache: 'no-store', headers: { Accept: 'application/json' } });
+      if (!response.ok) throw new Error('Service response failed');
       const config = await response.json();
-      if (!config.configured || !config.siteKey) throw new Error('Configuration is required');
+      if (!config || config.configured !== true || !config.siteKey) {
+        showUnavailable('The secure email service is being configured. For now, please send your specifications directly by email or WhatsApp.');
+        return;
+      }
       const script = document.createElement('script');
       script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
       script.async = true;
       script.onload = () => {
         try {
+          if (!window.turnstile || typeof window.turnstile.render !== 'function') throw new Error('Turnstile unavailable');
           captchaId = window.turnstile.render('#turnstile-mount', {
             sitekey: config.siteKey,
             theme: 'auto',
             action: 'sscp_enquiry',
-            callback: () => { showStatus(''); },
-            'expired-callback': () => showStatus('Verification expired. Please complete it again.', 'error')
+            callback: () => showStatus(''),
+            'expired-callback': () => showStatus('Verification expired. Please complete it again.', 'error'),
+            'error-callback': () => showStatus('Security verification could not complete. Please retry or contact us by email.', 'error')
           });
           enabled = true;
+          form.hidden = false;
+          if (unavailable) unavailable.hidden = true;
           setDisabled(false);
-          note.textContent = 'Protected by Cloudflare Turnstile. You can send your enquiry directly from this form.';
+          note.textContent = 'Secure form ready — your enquiry will be emailed to the SSCP sales team.';
+          note.classList.remove('error');
         } catch {
-          note.textContent = 'Verification could not load. Please email sales@sscircuitproducts.com instead.';
-          note.classList.add('error');
+          showUnavailable('The security verification could not start. Please send your specifications by email or WhatsApp.');
         }
       };
-      script.onerror = () => {
-        note.textContent = 'Verification could not load. Please email sales@sscircuitproducts.com instead.';
-        note.classList.add('error');
-      };
+      script.onerror = () => showUnavailable('The security verification could not load. Please contact our sales team by email or WhatsApp.');
       document.head.appendChild(script);
     } catch {
-      note.textContent = 'Online submission will be available after email-service setup. Meanwhile, contact sales@sscircuitproducts.com using the email button.';
-      note.classList.add('error');
+      showUnavailable('The enquiry service is temporarily unavailable. Please contact our sales team by email or WhatsApp.');
     }
   }
 
